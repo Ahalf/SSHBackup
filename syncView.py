@@ -14,6 +14,7 @@ def showMenu():
 	print("				7. Delete config 				")
 	print("				8. Delete backup				")
 	print("				9. List dir contents			")
+	print("				10.Config info					")
 	print("				Exit. Exit						")
 
 def printConfigStats(config):
@@ -98,6 +99,12 @@ def getRemoteBackup():
 	configName = input("Enter config name: ")
 	client.getRemoteBackup(configName)
 
+def getConfigInfo():
+	client = Controller()
+	print("csSync Configuration")
+	print('-----------------------------')
+	print('Config files located in %s' % client.CONFIGDIR)
+	print('Backup directory located at %s' % client.BACKUPDIR)
 
 def exitcsSync():
 	sys.exit(0)
@@ -111,5 +118,6 @@ options = {'1' : sync,
            '7' : deleteConfig,
            '8' : deleteBackup,
            '9' : listFilesInConfig,
+           '10': getConfigInfo,
            'exit' : exitcsSync
 }

@@ -11,8 +11,9 @@ import base64
 class Controller():
 
 	def __init__(self):
-		self.CONFIGDIR = '/Users/adamhalfaker/Documents/bin/csSync/configs/'
-		self.BACKUPDIR = '/Users/adamhalfaker/Documents/bin/csSync/backups/'
+		self.HOME = os.environ['HOME'] + '/Documents/bin/csSync'
+		self.CONFIGDIR = self.HOME + '/configs/'
+		self.BACKUPDIR = self.HOME + '/backups/'
 
 	def __connect(self,host, user, password):
 		client = paramiko.SSHClient()
@@ -31,7 +32,6 @@ class Controller():
 		name = input("Enter config name: ")
 		host = input("Enter host name: ")
 		user = input("Enter username: ")
-
 		password = base64.b64encode(str.encode(getpass.getpass("Enter password: ")))
 		path = input("Enter path to file or directory: ")
 		config = Config(name, host, user, password, path)
